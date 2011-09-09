@@ -2,13 +2,13 @@
 //Variáveis de sessão para parametrização - Serão extraídas do Banco de Dados
 
 session_start("SUGESTAO");
-$_SESSION["Gnomeprocesso"]	 		= "Política de Segurança da Informação";
+$_SESSION["Gnomeprocesso"]	 		= "Regimento Interno - IFBaiano";
 $_SESSION["Gdatainicio"]  			= mktime(0, 0, 0, 10, 9, 2011);
 $_SESSION["Gdatatermino"]			= mktime(0, 0, 0, 13, 9, 2011); 
 
 $_SESSION["Gpaginaarquivo"] 		= "http://issuu.com/ifbaiano/docs/regimento?viewMode=magazine&mode=embed";
-$_SESSION["Gusrmail"] 			= "andre.rezende@ifbaiano.edu.br";
-$_SESSION["Gpwdmail"] 			= "r3z3nd3";
+$_SESSION["Gusrmail"] 			= "prgi@ifbaiano.edu.br";
+$_SESSION["Gpwdmail"] 			= "123@abcd";
 
 ?>
 

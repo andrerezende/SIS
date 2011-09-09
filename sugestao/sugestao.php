@@ -1,8 +1,6 @@
 <?php session_start("SUGESTAO"); 
 
 $tipo 		= addslashes($_POST['tipo']);
-var_dump($tipo);
-
 
 ?>
 
@@ -67,20 +65,20 @@ var_dump($tipo);
 			resultado = false;
 		}
 		<?php
-			//Parametros possíveis "E" e "S"
-			//"E"> Comunidade\Público Externo
-			//"S"> Servidor do IFBaiano
-			if (isset($tipo) && ($tipo=="E") ){ 
+		//Parametros possíveis "E" e "S"
+		//"E"> Comunidade\Público Externo
+		//"S"> Servidor do IFBaiano
+		if (isset($tipo) && ($tipo=="E") ){ 
 		?>
-				}else if (!ValidaCPF(cpf)) {
-					resultado = false;
-				}else if (rg.value == "") {
-					alert('Informe o RG!');
-					rg.focus();
-					resultado = false;
-				}
+			else if (!ValidaCPF(cpf)) {
+				resultado = false;
+			}else if (rg.value == "") {
+				alert('Informe o RG!');
+				rg.focus();
+				resultado = false;
+			}
 
-		<?php } ?>
+	<?php } ?>
 
 		return resultado;
 	}
@@ -175,7 +173,7 @@ var_dump($tipo);
 					<tr>
 						<td height="27" align='right'><label for=matricula>Matrícula:</label></td>
 						<td>
-							<input name="matricula" type="text" id="matricula" tabindex=5 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="Matricula" />
+							<input name="matricula" type="text" id="matricula" tabindex=2 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="Matricula" />
 							<span class="textoSobrescrito">*</span>
 						</td>
 					</tr>
@@ -185,7 +183,7 @@ var_dump($tipo);
 					<tr>
 						<td align='right'><label for=cpf >CPF:</label></td>
 						<td>
-							<input name="cpf" type="text" id="cpf" tabindex=2 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="CPF" />
+							<input name="cpf" type="text" id="cpf" tabindex=3 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="CPF" />
 							<span class="textoSobrescrito">* ATEN&Ccedil;&Atilde;O: N&atilde;o ser&aacute; poss&iacute;vel alterar o CPF posteriormente.</span>
 						</td>
 					</tr>
@@ -193,7 +191,7 @@ var_dump($tipo);
 					<tr>
 						<td height="27" align='right'><label for=rg>RG:</label></td>
 						<td>
-							<input name="rg" type="text" id="rg" tabindex=5 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="RG" />
+							<input name="rg" type="text" id="rg" tabindex=4 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="RG" />
 							<span class="textoSobrescrito">*</span>
 						</td>
 					</tr>
@@ -203,7 +201,7 @@ var_dump($tipo);
 				<tr>
 					<td align='right'><label for=email>E-mail:</label></td>
 					<td>
-						<input style="text-transform:uppercase" name="email" id="email" type="text" tabindex=20 size='40' maxlength="40" alt="E-mail" />
+						<input style="text-transform:uppercase" name="email" id="email" type="text" tabindex=5 size='40' maxlength="40" alt="E-mail" />
 						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>
@@ -211,27 +209,27 @@ var_dump($tipo);
 
 					<td align='right'><label for=artigo>Artigo/Inciso:</label></td>
 					<td>
-						<input style="text-transform:uppercase" name="artigo" id="artigo" type="text" tabindex=20 size='40' maxlength="40" alt="artigo" />
+						<input style="text-transform:uppercase" name="artigo" id="artigo" type="text" tabindex=6 size='40' maxlength="40" alt="artigo" />
 						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>
 				<tr>
 					<td align='right'><label for=sugestao>Sugestão:</label></td>
 					<td>
-						<textarea style="text-transform:uppercase" name="sugestao" id="sugestao" tabindex=10 rows ="5" cols="50" alt="Sugestão"></textarea>
+						<textarea style="text-transform:uppercase" name="sugestao" id="sugestao" tabindex=7 rows ="5" cols="50" alt="Sugestão"></textarea>
 						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>
 				<tr>
 					<td align='right'><label for=justificativa>Justificativa:</label></td>
 					<td>
-						<textarea style="text-transform:uppercase" name="justificativa" id="justificativa" tabindex=10 rows ="5" cols="50" alt="Justificativa"></textarea>
+						<textarea style="text-transform:uppercase" name="justificativa" id="justificativa" tabindex=8 rows ="5" cols="50" alt="Justificativa"></textarea>
 						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>
 				<tr>
 					<td colspan='3' align='left'>
-						<input name="Gravar" type="submit" id="Gravar" tabindex=41 value="Gravar Dados" />
+						<input name="Gravar" type="submit" id="Gravar" tabindex=9 value="Gravar Dados" />
 						<input type="button" value="Cancelar" onclick="javascript:redireciona();" />
 					</td>
 				</tr>

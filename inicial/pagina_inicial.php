@@ -15,7 +15,7 @@ session_start("SELECAO"); //sempre session_start antes de usar sessions
 
 <?php
 
-	echo ("Bem-vindo(a) ao Sistema Informatizado de Sugest&otilde;es para a <b> ".$_SESSION["Gnomeprocesso"]. "</b>. Escolha uma op&ccedil;&atilde;o no menu ao lado."); 
+	echo ("Bem-vindo(a) ao Sistema Informatizado de Sugest&otilde;es para o(a) <b> ".$_SESSION["Gnomeprocesso"]. "</b>. Escolha uma op&ccedil;&atilde;o no menu ao lado."); 
 ?>
 
 </p>
