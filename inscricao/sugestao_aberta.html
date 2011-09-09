@@ -1,0 +1,41 @@
+<?php session_start("SUGESTAO"); ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title> <?php echo ($_SESSION["Gnomeprocesso"]);?> </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="estilo_selecao.css" rel="stylesheet" type="text/css" />
+	<script language="JavaScript" type="text/JavaScript">
+
+		function valida(frm) {
+
+			  var radio = frm.elements['tipo'];
+			  if (radio[0].checked) {
+	   			//window.location ="sugestao/sugestao.php";
+				alert("Comunidade");
+			  } else{
+	   			alert("Servidor");
+			 }
+			 frm.submit(); 
+		}
+
+	</script>
+
+</head>
+
+<body>
+<form id='frmsugestao' name='frmsugestao' action="sugestao/sugestao.php" method="post">
+<div><br>
+	<input type="radio" name="tipo" id="r1" value="E"> Comunidade\Público Externo<br>
+	<input type="radio" name="tipo" id="r2" value="S" checked> Servidor do IFBaiano<br>
+</div>
+<br>
+<tr>
+	<td colspan='3' align='left'>
+		<input type="button" value="Continuar" onclick="valida(this.form);" />
+	</td>
+</tr> 
+</form>
+
+</body>
+</html>
