@@ -43,10 +43,6 @@ $tipo 		= addslashes($_POST['tipo']);
 			alert('Informe o nome!');
 			nome.focus();
 			resultado = false;
-		}else if(matricula.value== "") {
-			alert('Informe a Matrícula!');
-			matricula.focus();
-			resultado = false;
 		}else if (email.value == "") {
 			alert('Informe o email!');
 			email.focus();
@@ -66,20 +62,31 @@ $tipo 		= addslashes($_POST['tipo']);
 		}
 		<?php
 		//Parametros possíveis "E" e "S"
-		//"E"> Comunidade\Público Externo
 		//"S"> Servidor do IFBaiano
+		//"E"> Comunidade\Público Externo
 		if (isset($tipo) && ($tipo=="E") ){ 
 		?>
-			else if (!ValidaCPF(cpf)) {
+			else if(cpf.value== "") {
+				alert('Informe o CPF!');
+				cpf.focus();
+				resultado = false;
+			}else if (!ValidaCPF(cpf)) {
 				resultado = false;
 			}else if (rg.value == "") {
 				alert('Informe o RG!');
 				rg.focus();
 				resultado = false;
 			}
+		<?php
+		} else { ?> 
 
-	<?php } ?>
-
+			else if(matricula.value== "") {
+				alert('Informe a Matrícula!');
+				matricula.focus();
+				resultado = false;
+			}
+		<?php 
+		}?>
 		return resultado;
 	}
 
