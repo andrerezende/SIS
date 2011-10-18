@@ -2,9 +2,20 @@
 
 <?php
 
+/*Informaï¿½ï¿½es a serem enviadas*/
+$nomeenviado   		= addslashes($_POST['nome']);	
+$emailenviado  		= addslashes($_POST['email']);		
+$topicoenviado         	= addslashes($_POST['topico']);
+$artigoenviado         	= addslashes($_POST['artigo']);
+$justificativaenviado  	= addslashes($_POST['justificativa']);
+$sugestaoenviado  	= addslashes($_POST['sugestao']);
+
+$matriculaenviado    	= addslashes($_POST['matricula']);
+$siapeenviado    	= addslashes($_POST['siape']);	
+
 ini_set('display_errors', true);
 session_start();
-require_once 'classes/swift-mailer/lib/swift_required.php';
+require_once 'email/swift-mailer/lib/swift_required.php';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -47,7 +58,7 @@ require_once 'classes/swift-mailer/lib/swift_required.php';
 							<div id="menu2">
 								<ul class="menu">								
 									<li><a href="../index.php?sc=Inicial">P&aacute;gina Inicial</a></li>
-									<li><a href="../index.php?sc=contribuir">Sugestões</a></li>
+									<li><a href="../index.php?sc=contribuir">Sugest&otilde;es</a></li>
 									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta</a></li>
 								</ul>
 							</div>
@@ -55,54 +66,37 @@ require_once 'classes/swift-mailer/lib/swift_required.php';
 					</div>
 			</div>
 			<div id="colunaMeio">
-				<div id="tituloPrincipal">Registro de Sugestões</div>
+				<div id="tituloPrincipal">Registro de Sugest&otilde;es</div>
 				<div class="conteudoColunaMeio">
-<?php
+<?php	
+        //PARAMETRIZAR
+	//*InformaÃ§Ã£o do e-mail da comissao*/
+        $emailcomissao 		= $_SESSION["Gusrmail"];
 
-      /*Informações a serem enviadas*/
-	$nomeenviado   		= $nome;	
-	$matriculaenviado    	= $matricula;
-	$cpfenviado    		= $cpf;	
-	$rgenviado     		= $rg;	
-	$emailenviado  		= $email;	
-	
-	$artigoenviado          	= $artigo;
-	$justificativaenviado   	= $justificativa;
-       $sugestaoenviado  		= $sugestao;
-
-      
-	//PARAMETRIZAR
-	/*Informações do e-mail da comissao*/
-       $emailcomissao 		= $_SESSION["Gusrmail"];
-
-	/*Informações de conexão do servidor de e-mail*/
-
-       $servidorSMTP 		= 'smtp.ifbaiano.edu.br';
-	$usuarioSMTP 			= $_SESSION["Gusrmail"];
-	$senhaSMTP 			= $_SESSION["Gpwdmail"];
-	$configSmtp 			= Swift_SmtpTransport::newInstance($servidorSMTP, 25)
+	/*Informaï¿½ï¿½es de conexï¿½o do servidor de e-mail*/
+        $servidorSMTP 		= 'smtp.ifbaiano.edu.br';
+	$usuarioSMTP 		= $_SESSION["Gusrmail"];
+	$senhaSMTP 		= $_SESSION["Gpwdmail"];
+	$configSmtp 		= Swift_SmtpTransport::newInstance($servidorSMTP, 25)
 						->setUsername($usuarioSMTP)
 						->setPassword($senhaSMTP)
 	;
 	
 	$mailer = Swift_Mailer::newInstance($configSmtp);
 
-       //var_dump ($nomeenviado, $cpfenviado, $rgenviado, $emailenviado, $sugestaoenviado);
-       //exit;
-
 	$mensagem = Swift_Message::newInstance()
 		->setSubject($_SESSION["Gnomeprocesso"])
-		->setFrom(array($usuarioSMTP => 'Sistema Informatizado de Sugestões'))
-		->setTo(array($emailcomissao => 'Sistema Informatizado de Sugestões'))
+		->setFrom(array($usuarioSMTP => 'Sistema Informatizado de SugestÃµes'))
+		->setTo(array($emailcomissao => 'Sistema Informatizado de SugestÃµes'))
 		->setBody(
 			'<p>Nome: <b>' .$nomeenviado. '</p>' .
 			''.
-			'<p>CPF: <b>' .$cpfenviado. '</b></p>'.			
+			'<p>SIAPE: <b>' .$siapeenviado. '</b></p>'.			
 			''.
-			'<p>RG: <b>' .$rgenviado. '</b></p>'.
+			'<p>MatrÃ­cula: <b>' .$matriculaenviado. '</b></p>'.
 			''.
-			'<p>Matrícula: <b>' .$matriculaenviado. '</b></p>'.
-			''.
+			'<p>TÃ³pico: <b>' .$topicoenviado. '</b></p>'.
+                        ''.
 			'<p>Artigo/Inciso: <b>' .$artigoenviado. '</b></p>'.
 			''.
 			'<p>Justificativa: <b>' .$justificativaenviado. '</b></p>'.
@@ -117,7 +111,7 @@ require_once 'classes/swift-mailer/lib/swift_required.php';
 
 	$result = $mailer->send($mensagem);
 	if ($result) {
-		echo("<p class='textoDestaque2'>A sugestão foi enviada ao email da comissão.</p>");
+		echo("<p class='textoDestaque2'>A sugest&atilde;o foi enviada ao email da comiss&atilde;o.</p>");
 	} else {
 		echo("<p class='textoDestaque2'>Problemas ao enviar o email.</p>");
 	}

@@ -29,13 +29,13 @@ $tipo 		= addslashes($_POST['tipo']);
 
 	function validar() {
 		var nome            = document.getElementById("nome");
-		var matricula       = document.getElementById("matricula");
 		var email           = document.getElementById("email");
+                var topico          = document.getElementById("topico");
 		var artigo          = document.getElementById("artigo");
 		var sugestao        = document.getElementById("sugestao");
 		var justificativa   = document.getElementById("justificativa");
-		var rg              = document.getElementById("rg");
-		var cpf             = document.getElementById("cpf");
+		var siape           = document.getElementById("siape");
+                var matricula       = document.getElementById("matricula");
   
 		resultado = true;
 		
@@ -47,42 +47,41 @@ $tipo 		= addslashes($_POST['tipo']);
 			alert('Informe o email!');
 			email.focus();
 			resultado = false;
-		}else if (artigo.value == "") {
-			alert('Informe o Artigo/Inciso!');
+		}else if (topico.value == "") {
+			alert('Informe o t√≥pico!');
+			topico.focus();
+			resultado = false;
+                }else if (artigo.value == "") {
+			alert('Informe o artigo/inciso!');
 			artigo.focus();
 			resultado = false;
 		}else if (sugestao.value == "") {
-			alert('Informe a sugest„o!');
+			alert('Informe a sugest√£o!');
 			sugestao.focus();
 			resultado = false;
 		}else if (justificativa.value == "") {
-			alert('Informe a Justificativa!');
+			alert('Informe a justificativa!');
 			justificativa.focus();
 			resultado = false;
 		}
 		<?php
-		//Parametros possÌveis "E" e "S"
-		//"S"> Servidor do IFBaiano
-		//"E"> Comunidade\P˙blico Externo
-		if (isset($tipo) && ($tipo=="E") ){ 
+                //Parametros poss√≠veis "D", "T" e "A"
+                //"D": Docente
+                //"T": T√©cnico
+                //"A": Aluno
+                if (isset($tipo) && ($tipo=="A") ){ 
 		?>
-			else if(cpf.value== "") {
-				alert('Informe o CPF!');
-				cpf.focus();
-				resultado = false;
-			}else if (!ValidaCPF(cpf)) {
-				resultado = false;
-			}else if (rg.value == "") {
-				alert('Informe o RG!');
-				rg.focus();
+			else if(matricula.value== "") {
+				alert('Informe a Matr√≠cula!');
+				matricula.focus();
 				resultado = false;
 			}
 		<?php
 		} else { ?> 
 
-			else if(matricula.value== "") {
-				alert('Informe a MatrÌcula!');
-				matricula.focus();
+			else if(siape.value== "") {
+				alert('Informe o SIAPE!');
+				siape.focus();
 				resultado = false;
 			}
 		<?php 
@@ -153,11 +152,9 @@ $tipo 		= addslashes($_POST['tipo']);
 	<div align='center'>
 		<img src="../imgs/topo2/topo_formulario.png" alt="Instituto Federal Baiano" />
 		<h2><?php echo ($_SESSION["Gnomeprocesso"]);?></h2>
-		<h2>Formul·rio de Sugestıes</h2>
+		<h2>Formul&aacute;rio de Sugest&otilde;es</h2>
 		<p><span class="textoDestaque">OBSERVA&Ccedil;&Atilde;O: Os campos marcados com asterisco (*) s&atilde;o de preenchimento obrigat&oacute;rio.</span></p>
 	</div>
-
-
 	
 	<div id="formularioInscricao">
 		<form id='forminscricao' name='frmincricao' action='recuperar.php' method='post' onsubmit='return validar()' >
@@ -171,34 +168,26 @@ $tipo 		= addslashes($_POST['tipo']);
 				</tr>
 
 				<?php	
-					//Parametros possÌveis "E" e "S"
-					//"E"> Comunidade\P˙blico Externo
-					//"S"> Servidor do IFBaiano
-
-					if (isset($tipo) && ($tipo=="S") ){ ?>
+					//Parametros possÔøΩveis "D", "T" e "A"
+					//"D": Docente
+					//"T": T√©cnico
+                                        //"A": Aluno                                
+					if (isset($tipo) && ($tipo=="A") ){ ?>
 
 					<tr>
-						<td height="27" align='right'><label for=matricula>MatrÌcula:</label></td>
+						<td height="27" align='right'><label for=matricula>Matr&iacute;cula:</label></td>
 						<td>
 							<input name="matricula" type="text" id="matricula" tabindex=2 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="Matricula" />
 							<span class="textoSobrescrito">*</span>
 						</td>
 					</tr>
 
-				<?php	}elseif (isset($tipo) && ($tipo=="E") ){ ?>
+				<?php	}else{ ?>
 
 					<tr>
-						<td align='right'><label for=cpf >CPF:</label></td>
+						<td align='right'><label for=siape >SIAPE:</label></td>
 						<td>
-							<input name="cpf" type="text" id="cpf" tabindex=3 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="CPF" />
-							<span class="textoSobrescrito">* ATEN&Ccedil;&Atilde;O: N&atilde;o ser&aacute; poss&iacute;vel alterar o CPF posteriormente.</span>
-						</td>
-					</tr>
-
-					<tr>
-						<td height="27" align='right'><label for=rg>RG:</label></td>
-						<td>
-							<input name="rg" type="text" id="rg" tabindex=4 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="RG" />
+							<input name="siape" type="text" id="siape" tabindex=4 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="SIAPE" />
 							<span class="textoSobrescrito">*</span>
 						</td>
 					</tr>
@@ -213,6 +202,36 @@ $tipo 		= addslashes($_POST['tipo']);
 					</td>
 				</tr>
 				<tr>
+					<td align='right'><label for=topico>T&oacute;pico:</label></td>
+					<td>
+						<select name="topico" id="topico" tabindex=7>
+
+                                                    <?
+                                                    include_once ("../administracao/classes/DB.php");
+                                                    include_once ("../administracao/classes/Topico.php");
+                                                    $banco = DB::getInstance();
+                                                    $conexao = $banco->ConectarDB();
+
+                                                    $obj_topico = new Topico(null, null);
+                                                    $vetor      = $obj_topico->SelectByAll($conexao);
+
+                                                    /* Varaveis auxiliares */
+                                                    $i = 0;
+                                                    $sel = "selected";
+                                                    $total = count($vetor);
+
+                                                    while ($total > $i) {
+                                                            $nome   = $vetor[$i]->getNome();
+                                                            $codigo = $vetor[$i]->getNome();
+                                                            echo("<option value='".$codigo."'".">".strtoupper($nome)."</option>\n");
+                                                            $i = $i + 1;
+                                                    }
+                                                    ?>
+                                                </select>
+                                                <span class="textoSobrescrito">*</span>
+					</td>
+				</tr>
+                                <tr>
 
 					<td align='right'><label for=artigo>Artigo/Inciso:</label></td>
 					<td>
@@ -221,9 +240,9 @@ $tipo 		= addslashes($_POST['tipo']);
 					</td>
 				</tr>
 				<tr>
-					<td align='right'><label for=sugestao>Sugest„o:</label></td>
+					<td align='right'><label for=sugestao>Sugest&atilde;o:</label></td>
 					<td>
-						<textarea style="text-transform:uppercase" name="sugestao" id="sugestao" tabindex=7 rows ="5" cols="50" alt="Sugest„o"></textarea>
+						<textarea style="text-transform:uppercase" name="sugestao" id="sugestao" tabindex=7 rows ="5" cols="50" alt="SugestÔøΩo"></textarea>
 						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>

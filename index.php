@@ -6,7 +6,7 @@ $_SESSION["Gnomeprocesso"]	 	= "REGIMENTO GERAL";
 $_SESSION["Gdatainicio"]  		= mktime(0, 0, 0, 10, 9, 2011);
 $_SESSION["Gdatatermino"]		= mktime(0, 0, 0, 13, 9, 2011); 
 
-$_SESSION["Gpaginaarquivo"] 		= "http://issuu.com/ifbaiano/docs/regimento?viewMode=magazine&mode=embed";
+$_SESSION["Gpaginaarquivo"] 		= "http://issuu.com/ifbaiano/docs/minuta.final-rg?viewMode=magazine&mode=embed";
 $_SESSION["Gusrmail"] 			= "prgi@ifbaiano.edu.br";
 $_SESSION["Gpwdmail"] 			= "123@abcd";
 
@@ -58,7 +58,7 @@ $_SESSION["Gpwdmail"] 			= "123@abcd";
 							<div id="menu2">
 								<ul class="menu">
 									<li><a href="index.php?sc=Inicial">P&aacute;gina Inicial</a></li>
-									<li><a href="index.php?sc=contribuir">Sugestões</a></li>
+									<li><a href="index.php?sc=contribuir">Sugest&otilde;es</a></li>
 									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta</a></li>
 								</ul>
 							</div>
