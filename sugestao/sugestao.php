@@ -56,7 +56,7 @@ $tipo 		= addslashes($_POST['tipo']);
 			artigo.focus();
 			resultado = false;
 		}else if (sugestao.value == "") {
-			alert('Informe a sugestão!');
+			alert('Informe a sugestao!');
 			sugestao.focus();
 			resultado = false;
 		}else if (justificativa.value == "") {
@@ -72,7 +72,7 @@ $tipo 		= addslashes($_POST['tipo']);
                 if (isset($tipo) && ($tipo=="A") ){ 
 		?>
 			else if(matricula.value== "") {
-				alert('Informe a Matrícula!');
+				alert('Informe a matrícula!');
 				matricula.focus();
 				resultado = false;
 			}

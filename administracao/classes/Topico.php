@@ -19,7 +19,7 @@ class Topico{
         
 	public function SelectByAll($sock) {
 		$ssql = "SELECT id, nome FROM topico A " ;
-		$ssql .= " ORDER BY nome ASC";
+		$ssql .= " ORDER BY id ASC";
 		$rs = mysql_query($ssql, $sock);
 
 		$ar = array();

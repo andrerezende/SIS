@@ -89,7 +89,7 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 		->setFrom(array($usuarioSMTP => 'Sistema Informatizado de Sugestões'))
 		->setTo(array($emailcomissao => 'Sistema Informatizado de Sugestões'))
 		->setBody(
-			'<p>Nome: <b>' .$nomeenviado. '</p>' .
+			'<p>Nome: <b>' .$nomeenviado. '</b></p>' .
 			''.
 			'<p>SIAPE: <b>' .$siapeenviado. '</b></p>'.			
 			''.
@@ -108,7 +108,6 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 		->setSender($usuarioSMTP)
 		->setPriority(2)
 	;
-
 	$result = $mailer->send($mensagem);
 	if ($result) {
 		echo("<p class='textoDestaque2'>A sugest&atilde;o foi enviada ao email da comiss&atilde;o.</p>");
