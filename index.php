@@ -1,10 +1,10 @@
 <?php 
-//Variáveis de sessão para parametrização - Serão extraídas do Banco de Dados
+//VariÃ¡veis de sessÃ£o para parametrizaÃ§Ã£o - SerÃ£o extraÃ­das do Banco de Dados
 
 session_start("SUGESTAO");
-$_SESSION["Gnomeprocesso"]	 		= "Regimento Interno - IFBaiano";
-$_SESSION["Gdatainicio"]  			= mktime(0, 0, 0, 10, 9, 2011);
-$_SESSION["Gdatatermino"]			= mktime(0, 0, 0, 13, 9, 2011); 
+$_SESSION["Gnomeprocesso"]	 	= "REGIMENTO GERAL";
+$_SESSION["Gdatainicio"]  		= mktime(0, 0, 0, 10, 9, 2011);
+$_SESSION["Gdatatermino"]		= mktime(0, 0, 0, 13, 9, 2011); 
 
 $_SESSION["Gpaginaarquivo"] 		= "http://issuu.com/ifbaiano/docs/regimento?viewMode=magazine&mode=embed";
 $_SESSION["Gusrmail"] 			= "prgi@ifbaiano.edu.br";
@@ -58,7 +58,7 @@ $_SESSION["Gpwdmail"] 			= "123@abcd";
 							<div id="menu2">
 								<ul class="menu">
 									<li><a href="index.php?sc=Inicial">P&aacute;gina Inicial</a></li>
-									<li><a href="index.php?sc=contribuir">Sugestões</a></li>
+									<li><a href="index.php?sc=contribuir">SugestÃµes</a></li>
 									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta</a></li>
 								</ul>
 							</div>
@@ -73,7 +73,7 @@ $_SESSION["Gpwdmail"] 			= "123@abcd";
 						if ((isset($sc)) and (file_exists($sc))) {
 							include($sc);
 						} else {
-							echo "<p><strong>A p&aacute;gina solicitada não existe!</strong></p><p><a href=\"javascript:history.back();\">Voltar</a></p>";
+							echo "<p><strong>A p&aacute;gina solicitada nï¿½o existe!</strong></p><p><a href=\"javascript:history.back();\">Voltar</a></p>";
 						}
 						?>
 					</div>
