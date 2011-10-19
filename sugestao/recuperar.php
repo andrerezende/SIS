@@ -3,15 +3,15 @@
 <?php
 
 /*Informa��es a serem enviadas*/
-$nomeenviado   		= addslashes($_POST['nome']);	
-$emailenviado  		= addslashes($_POST['email']);		
-$topicoenviado         	= addslashes($_POST['topico']);
-$artigoenviado         	= addslashes($_POST['artigo']);
-$justificativaenviado  	= addslashes($_POST['justificativa']);
-$sugestaoenviado  	= addslashes($_POST['sugestao']);
+$nome   		= addslashes($_POST['nome']);	
+$email  		= addslashes($_POST['email']);		
+$topico         	= addslashes($_POST['topico']);
+$artigo         	= addslashes($_POST['artigo']);
+$justificativa  	= addslashes($_POST['justificativa']);
+$sugestao         	= addslashes($_POST['sugestao']);
 
-$matriculaenviado    	= addslashes($_POST['matricula']);
-$siapeenviado    	= addslashes($_POST['siape']);	
+$matricula      	= addslashes($_POST['matricula']);
+$siape          	= addslashes($_POST['siape']);	
 
 ini_set('display_errors', true);
 session_start();
@@ -89,30 +89,41 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 		->setFrom(array($usuarioSMTP => 'Sistema Informatizado de Sugestões'))
 		->setTo(array($emailcomissao => 'Sistema Informatizado de Sugestões'))
 		->setBody(
-			'<p>Nome: <b>' .$nomeenviado. '</b></p>' .
+			'<p>Nome: <b>' .$nome. '</b></p>' .
 			''.
-			'<p>SIAPE: <b>' .$siapeenviado. '</b></p>'.			
+			'<p>SIAPE: <b>' .$siape. '</b></p>'.			
 			''.
-			'<p>Matrícula: <b>' .$matriculaenviado. '</b></p>'.
+			'<p>Matrícula: <b>' .$matricula. '</b></p>'.
 			''.
-			'<p>Tópico: <b>' .$topicoenviado. '</b></p>'.
+			'<p>Tópico: <b>' .$topico. '</b></p>'.
                         ''.
-			'<p>Artigo/Inciso: <b>' .$artigoenviado. '</b></p>'.
+			'<p>Artigo/Inciso: <b>' .$artigo. '</b></p>'.
 			''.
-			'<p>Justificativa: <b>' .$justificativaenviado. '</b></p>'.
+			'<p>Justificativa: <b>' .$justificativa. '</b></p>'.
 			''.
-			'<p>E-mail: <b>' .$emailenviado. '</b></p>'.
+			'<p>E-mail: <b>' .$email. '</b></p>'.
 			''.
-			'<p>Sugest&atilde;o: <b>' .$sugestaoenviado. '</b></p>',
+			'<p>Sugest&atilde;o: <b>' .$sugestao. '</b></p>',
 		'text/html')
 		->setSender($usuarioSMTP)
 		->setPriority(2)
 	;
 	$result = $mailer->send($mensagem);
 	if ($result) {
-		echo("<p class='textoDestaque2'>A sugest&atilde;o foi enviada ao email da comiss&atilde;o.</p>");
+            
+            echo("<p class='textoDestaque2'>A sugest&atilde;o foi enviada ao email da comiss&atilde;o.</p>");
+            //Gravar no banco de dados
+            include_once ("../administracao/classes/DB.php");
+            include_once ("../administracao/classes/Mensagem.php");
+
+            $banco = DB::getInstance();
+            $conexao = $banco->ConectarDB();
+
+            $obj_mensagem = new Mensagem($pid, $nome, $email, $topico,$artigo,$justificativa,$sugestao,$matricula, $siape);
+            $valor        = $obj_mensagem ->Inserir($conexao);    
+                
 	} else {
-		echo("<p class='textoDestaque2'>Problemas ao enviar o email.</p>");
+	    echo("<p class='textoDestaque2'>Problemas ao enviar o email.</p>");
 	}
 
 ?>
