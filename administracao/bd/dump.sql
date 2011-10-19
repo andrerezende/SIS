@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 19/10/2011 às 04h22min
+-- Tempo de Geração: 19/10/2011 às 14h08min
 -- Versão do Servidor: 5.5.16
 -- Versão do PHP: 5.3.8
 
@@ -32,20 +32,26 @@ CREATE TABLE IF NOT EXISTS `mensagem` (
   `email` varchar(50) DEFAULT NULL,
   `topico` varchar(50) DEFAULT NULL,
   `artigo` varchar(50) DEFAULT NULL,
-  `justificativa` varchar(128) DEFAULT NULL,
-  `sugestao` varchar(128) DEFAULT NULL,
-  `matricula` int(11) DEFAULT NULL,
-  `siape` int(11) DEFAULT NULL,
+  `justificativa` text,
+  `sugestao` text,
+  `matricula` varchar(15) DEFAULT NULL,
+  `siape` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Extraindo dados da tabela `mensagem`
 --
 
 INSERT INTO `mensagem` (`id`, `nome`, `email`, `topico`, `artigo`, `justificativa`, `sugestao`, `matricula`, `siape`) VALUES
-(1, 'nome', 'email', 'topico', 'artigo', 'justificativa', 'sugestao', 99888772, 888282),
-(2, 'nome', 'email', 'topico', 'artigo', 'justificativa', 'sugestao', 99888772, 888282);
+(1, 'nome', 'email', 'topico', 'artigo', 'justificativa', 'sugestao', '99888772', '888282'),
+(2, 'nome', 'email', 'topico', 'artigo', 'justificativa', 'sugestao', '99888772', '888282'),
+(3, 'André luiz andrade rezende', 'andre.luiz.rezende@gmail.com', 'Seção II – Dos Recursos Financeiros ', '89', 'psdjflsdnfskdnfskdjfnskdjf', 'uitoa sugestasoa alskjdasmdnalskdjnlasnd', '11111', '9898987'),
+(4, 'André luiz andrade rezende', 'andre.luiz.rezende@gmail.com', 'Seção II – Dos Recursos Financeiros ', '89', 'psdjflsdnfskdnfskdjfnskdjf', 'uitoa sugestasoa alskjdasmdnalskdjnlasnd', NULL, '9898987'),
+(5, 'André luiz andrade rezende', 'andre.luiz.rezende@gmail.com', 'Seção II – Dos Recursos Financeiros ', '89', 'psdjflsdnfskdnfskdjfnskdjf', 'uitoa sugestasoa alskjdasmdnalskdjnlasnd', '1111', '98987'),
+(6, 'André luiz andrade rezende', 'andre.luiz.rezende@gmail.com', 'Seção II – Dos Recursos Financeiros ', '89', 'psdjflsdnfskdnfskdjfnskdjf', 'uitoa sugestasoa alskjdasmdnalskdjnlasnd', '', '9898987'),
+(7, 'André luiz andrade rezende', 'andre.luiz.rezende@gmail.com', 'Seção II – Do Colégio de Dirigentes  ', '4', 'MEMORANDO Nº. 06/2011/IF BAIANO/DGTI     Salvador, 23 de março de 2011.\r\n\r\nA Pró-reitoria de Administração e Planejamento\r\n\r\nAssunto: Aquisição de licença de antivírus para Reitoria através de registro de preço\r\n\r\nPrezada Senhora,\r\n\r\nEm função das demandas relacionadas à infra-estrutura de Tecnologia da Informação e Comunicação deste Instituto, solicitamos que seja encaminhado ao setor responsável, o pedido de aquisição de licenças de antivírus, através de registro de preço. Em anexo ao memorando nº. 06/2011, segue a documentação pertinente ao referido pleito. \r\n\r\n\r\nItem	Descrição	Fornecedor	Ata	UASG	Qtd.\r\n1	Justiça Federal de Primeiro Grau do Rio Grande do Norte	Qualitek	07/2010\r\n	90007	120\r\n', 'MEMORANDO Nº. 06/2011/IF BAIANO/DGTI     Salvador, 23 de março de 2011.\r\n\r\nA Pró-reitoria de Administração e Planejamento\r\n\r\nAssunto: Aquisição de licença de antivírus para Reitoria através de registro de preço\r\n\r\nPrezada Senhora,\r\n\r\nEm função das demandas relacionadas à infra-estrutura de Tecnologia da Informação e Comunicação deste Instituto, solicitamos que seja encaminhado ao setor responsável, o pedido de aquisição de licenças de antivírus, através de registro de preço. Em anexo ao memorando nº. 06/2011, segue a documentação pertinente ao referido pleito. \r\n\r\n\r\nItem	Descrição	Fornecedor	Ata	UASG	Qtd.\r\n1	Justiça Federal de Primeiro Grau do Rio Grande do Norte	Qualitek	07/2010\r\n	90007	120\r\n', '', '09091209120'),
+(8, 'André luiz andrade rezende', 'andre.luiz.rezende@gmail.com', 'Seção II – Dos Recursos Financeiros ', '89', 'teste', 'uitoa sugestasoa alskjdasmdnalskdjnlasnd', '', '9898987');
 
 -- --------------------------------------------------------
 

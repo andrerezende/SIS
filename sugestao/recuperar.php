@@ -2,7 +2,7 @@
 
 <?php
 
-/*Informa��es a serem enviadas*/
+/*Informações a serem enviadas*/
 $nome   		= addslashes($_POST['nome']);	
 $email  		= addslashes($_POST['email']);		
 $topico         	= addslashes($_POST['topico']);
@@ -13,8 +13,6 @@ $sugestao         	= addslashes($_POST['sugestao']);
 $matricula      	= addslashes($_POST['matricula']);
 $siape          	= addslashes($_POST['siape']);	
 
-ini_set('display_errors', true);
-session_start();
 require_once 'email/swift-mailer/lib/swift_required.php';
 
 ?>
@@ -99,9 +97,9 @@ require_once 'email/swift-mailer/lib/swift_required.php';
                         ''.
 			'<p>Artigo/Inciso: <b>' .$artigo. '</b></p>'.
 			''.
-			'<p>Justificativa: <b>' .$justificativa. '</b></p>'.
+			'<p>E-mail: <b>' .$email. '</b></p>'.                 
 			''.
-			'<p>E-mail: <b>' .$email. '</b></p>'.
+			'<p>Justificativa: <b>' .$justificativa. '</b></p>'.
 			''.
 			'<p>Sugest&atilde;o: <b>' .$sugestao. '</b></p>',
 		'text/html')
@@ -112,7 +110,8 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 	if ($result) {
             
             echo("<p class='textoDestaque2'>A sugest&atilde;o foi enviada ao email da comiss&atilde;o.</p>");
-            //Gravar no banco de dados
+            
+            //Gravar no banco de dados os e-mails enviados
             include_once ("../administracao/classes/DB.php");
             include_once ("../administracao/classes/Mensagem.php");
 
@@ -125,7 +124,6 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 	} else {
 	    echo("<p class='textoDestaque2'>Problemas ao enviar o email.</p>");
 	}
-
 ?>
 				</div>
 				</div>
