@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 19/10/2011 às 01h09min
+-- Tempo de Geração: 19/10/2011 às 04h22min
 -- Versão do Servidor: 5.5.16
 -- Versão do PHP: 5.3.8
 
@@ -19,6 +19,33 @@ SET time_zone = "+00:00";
 --
 -- Banco de Dados: `sis`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `mensagem`
+--
+
+CREATE TABLE IF NOT EXISTS `mensagem` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(128) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `topico` varchar(50) DEFAULT NULL,
+  `artigo` varchar(50) DEFAULT NULL,
+  `justificativa` varchar(128) DEFAULT NULL,
+  `sugestao` varchar(128) DEFAULT NULL,
+  `matricula` int(11) DEFAULT NULL,
+  `siape` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `mensagem`
+--
+
+INSERT INTO `mensagem` (`id`, `nome`, `email`, `topico`, `artigo`, `justificativa`, `sugestao`, `matricula`, `siape`) VALUES
+(1, 'nome', 'email', 'topico', 'artigo', 'justificativa', 'sugestao', 99888772, 888282),
+(2, 'nome', 'email', 'topico', 'artigo', 'justificativa', 'sugestao', 99888772, 888282);
 
 -- --------------------------------------------------------
 
