@@ -5,6 +5,7 @@
 /*Informações a serem enviadas*/
 $nome   		= addslashes($_POST['nome']);	
 $email  		= addslashes($_POST['email']);		
+$idcampus         	= addslashes($_POST['campus']);
 $topico         	= addslashes($_POST['topico']);
 $artigo         	= addslashes($_POST['artigo']);
 $justificativa  	= addslashes($_POST['justificativa']);
@@ -67,6 +68,18 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 				<div id="tituloPrincipal">Registro de Sugest&otilde;es</div>
 				<div class="conteudoColunaMeio">
 <?php	
+        //Gravar no banco de dados os e-mails enviados
+        include_once ("../administracao/classes/DB.php");
+        include_once ("../administracao/classes/Campus.php");
+        include_once ("../administracao/classes/Mensagem.php");
+
+        $banco = DB::getInstance();
+        $conexao = $banco->ConectarDB();
+        
+        $campus = new Campus(null, null);
+        $vetorCampusIncrito = $campus->SelectNomeCampus($conexao, $idcampus);
+        $nomecampus = $vetorCampusIncrito->getNome();
+
         //PARAMETRIZAR
 	//*Informação do e-mail da comissao*/
         $emailcomissao 		= $_SESSION["Gusrmail"];
@@ -93,6 +106,8 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 			''.
 			'<p>Matrícula: <b>' .$matricula. '</b></p>'.
 			''.
+			'<p>Campus: <b>' .$nomecampus. '</b></p>'.
+                        ''.
 			'<p>Tópico: <b>' .$topico. '</b></p>'.
                         ''.
 			'<p>Artigo/Inciso: <b>' .$artigo. '</b></p>'.
@@ -111,14 +126,7 @@ require_once 'email/swift-mailer/lib/swift_required.php';
             
             echo("<p class='textoDestaque2'>A sugest&atilde;o foi enviada ao email da comiss&atilde;o.</p>");
             
-            //Gravar no banco de dados os e-mails enviados
-            include_once ("../administracao/classes/DB.php");
-            include_once ("../administracao/classes/Mensagem.php");
-
-            $banco = DB::getInstance();
-            $conexao = $banco->ConectarDB();
-
-            $obj_mensagem = new Mensagem($pid, $nome, $email, $topico,$artigo,$justificativa,$sugestao,$matricula, $siape);
+            $obj_mensagem = new Mensagem($pid, $nome, $email, $idcampus, $topico,$artigo,$justificativa,$sugestao,$matricula, $siape);
             $valor        = $obj_mensagem ->Inserir($conexao);    
                 
 	} else {

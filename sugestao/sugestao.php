@@ -30,6 +30,7 @@ $tipo 		= addslashes($_POST['tipo']);
 	function validar() {
 		var nome            = document.getElementById("nome");
 		var email           = document.getElementById("email");
+                var campus          = document.getElementById("campus");
                 var topico          = document.getElementById("topico");
 		var artigo          = document.getElementById("artigo");
 		var sugestao        = document.getElementById("sugestao");
@@ -47,6 +48,10 @@ $tipo 		= addslashes($_POST['tipo']);
 			alert('Informe o email!');
 			email.focus();
 			resultado = false;
+                } else if (campus.value == "" || campus.value == "0") {
+			alert('Informe o campus!');
+			campus.focus();
+			resultado = false;	                     
 		}else if (topico.value == "") {
 			alert('Informe o tópico!');
 			topico.focus();
@@ -201,6 +206,38 @@ $tipo 		= addslashes($_POST['tipo']);
 						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>
+				<tr>
+					<td align='right' width="200px">
+						<label for=campus>Campus:</label>
+					</td>
+					<td colspan='2'>
+						<select id="campus" name="campus" tabindex="25">
+							<option value="0" selected="selected">Escolha um Campus</option>
+							<?php
+							include_once ("../administracao/classes/DB.php");
+							include_once ("../administracao/classes/Campus.php");
+							$banco = DB::getInstance();
+							$conexao = $banco->ConectarDB();
+
+							$campus = new Campus(null, null);
+							$vetorcampus = $campus->SelectByAll($conexao);
+
+							/* Varaveis auxiliares */
+							$i = 0;
+							$sel = "selected";
+							$total = count($vetorcampus);
+
+							while ($total > $i) {
+								$nome = $vetorcampus[$i]->getNome();
+								$codigo = $vetorcampus[$i]->getIdCampus();
+								echo("<option value=".$codigo.">".strtoupper($nome)."</option>\n");
+								$i = $i + 1;
+							}
+							?>
+						</select>
+						<span class="textoSobrescrito">*</span>
+					</td>
+				</tr>                            
 				<tr>
 					<td align='right'><label for=topico>T&oacute;pico:</label></td>
 					<td>
