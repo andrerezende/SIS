@@ -55,10 +55,11 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 					<div class="conteudoColunaEsquerda">
 						<div id="menuEsquerdo">
 							<div id="menu2">
-								<ul class="menu">								
-									<li><a href="../index.php?sc=Inicial">P&aacute;gina Inicial</a></li>
-									<li><a href="../index.php?sc=contribuir">Sugest&otilde;es</a></li>
-									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta</a></li>
+								<ul class="menu">
+									<li><a href="index.php?sc=Inicial">P&aacute;gina Inicial</a></li>
+									<li><a href="index.php?sc=contribuir">Sugest&otilde;es</a></li>
+									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta on-line</a></li>
+									<li><a href="colocar link" target="blank">Documento para consulta no formato PDF</a></li>                                                                        
 								</ul>
 							</div>
 						</div>
