@@ -4,11 +4,7 @@ session_start("SELECAO"); //sempre session_start antes de usar sessions
 //Controle de t�rmino do processo seletivo
 $data_incio   = $_SESSION["Gdatainicio"];
 $data_fim     = $_SESSION["Gdatatermino"];
-$data_atual   = strtotime(date("d/m/Y")); 
-
-?>
-
-<?php session_start();
+$data_atual   = strtotime("now");
 
 @$sc = $_REQUEST['sc'];
 @$scTitulo;

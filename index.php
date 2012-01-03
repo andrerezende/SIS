@@ -3,12 +3,12 @@
 
 session_start("SUGESTAO");
 $_SESSION["Gnomeprocesso"]	 	= "PLANEJAMENTO INSTITUCIONAL 2012";
-$_SESSION["Gdatainicio"]  		= mktime(0, 0, 0, 10, 9, 2011);
-$_SESSION["Gdatatermino"]		= mktime(0, 0, 0, 13, 9, 2011); 
+$_SESSION["Gdatainicio"]  		= mktime(0, 0, 0, 1, 2, 2012); // 0,0,0, M/D/Y
+$_SESSION["Gdatatermino"]		= mktime(0, 0, 0, 2, 2, 2012); 
 
 $_SESSION["Gpaginaarquivo"] 		= "http://issuu.com/ifbaiano/docs/minuta.final-rg?viewMode=magazine&mode=embed";
-$_SESSION["Gusrmail"] 			= "andyurezuyuende@ifbaiano.edu.br";
-$_SESSION["Gpwdmail"] 			= "uyuz3n3";
+$_SESSION["Gusrmail"] 			= "xxxx@ifbaiano.edu.br";
+$_SESSION["Gpwdmail"] 			= "xxxxxx";
 
 ?>
 
@@ -59,8 +59,8 @@ $_SESSION["Gpwdmail"] 			= "uyuz3n3";
 								<ul class="menu">
 									<li><a href="index.php?sc=Inicial">P&aacute;gina Inicial</a></li>
 									<li><a href="index.php?sc=contribuir">Sugest&otilde;es</a></li>
-									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta on-line</a></li>
-									<li><a href="colocar link" target="blank">Documento para consulta no formato PDF</a></li>                                                                        
+<!--									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta on-line</a></li>
+									<li><a href="colocar link" target="blank">Documento para consulta no formato PDF</a></li>                                                                        -->
 								</ul>
 							</div>
 						</div>

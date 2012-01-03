@@ -1,6 +1,4 @@
-<?php session_start("SUGESTAO"); ?>
-
-<?php
+<?php session_start("SUGESTAO"); 
 
 /*Informações a serem enviadas*/
 $nome   		= addslashes($_POST['nome']);	
@@ -13,8 +11,6 @@ $sugestao         	= addslashes($_POST['sugestao']);
 
 $matricula      	= addslashes($_POST['matricula']);
 $siape          	= addslashes($_POST['siape']);	
-
-require_once 'email/swift-mailer/lib/swift_required.php';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -58,8 +54,8 @@ require_once 'email/swift-mailer/lib/swift_required.php';
 								<ul class="menu">
 									<li><a href="index.php?sc=Inicial">P&aacute;gina Inicial</a></li>
 									<li><a href="index.php?sc=contribuir">Sugest&otilde;es</a></li>
-									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta on-line</a></li>
-									<li><a href="colocar link" target="blank">Documento para consulta no formato PDF</a></li>                                                                        
+<!--									<li><a href="<?php echo ($_SESSION["Gpaginaarquivo"]);?>" target="blank">Documento para consulta on-line</a></li>
+									<li><a href="colocar link" target="blank">Documento para consulta no formato PDF</a></li>                                                                        -->
 								</ul>
 							</div>
 						</div>
@@ -81,56 +77,28 @@ require_once 'email/swift-mailer/lib/swift_required.php';
         $vetorCampusIncrito = $campus->SelectNomeCampus($conexao, $idcampus);
         $nomecampus = $vetorCampusIncrito->getNome();
 
-        //PARAMETRIZAR
-	//*Informação do e-mail da comissao*/
-        $emailcomissao 		= $_SESSION["Gusrmail"];
+	$servidorSMTP 	= 'smtp.ifbaiano.edu.br';
+	$usuarioSMTP 	= $_SESSION["Gusrmail"];
+	$senhaSMTP 	= $_SESSION["Gpwdmail"];
 
-	/*Informa��es de conex�o do servidor de e-mail*/
-        $servidorSMTP 		= 'smtp.ifbaiano.edu.br';
-	$usuarioSMTP 		= $_SESSION["Gusrmail"];
-	$senhaSMTP 		= $_SESSION["Gpwdmail"];
-	$configSmtp 		= Swift_SmtpTransport::newInstance($servidorSMTP, 25)
-						->setUsername($usuarioSMTP)
-						->setPassword($senhaSMTP)
-	;
-	
-	$mailer = Swift_Mailer::newInstance($configSmtp);
-
-	$mensagem = Swift_Message::newInstance()
-		->setSubject($_SESSION["Gnomeprocesso"])
-		->setFrom(array($usuarioSMTP => 'Sistema Informatizado de Sugestões'))
-		->setTo(array($emailcomissao => 'Sistema Informatizado de Sugestões'))
-		->setBody(
-			'<p>Nome: <b>' .$nome. '</b></p>' .
-			''.
-			'<p>SIAPE: <b>' .$siape. '</b></p>'.			
-			''.
-			'<p>Matrícula: <b>' .$matricula. '</b></p>'.
-			''.
-			'<p>Campus: <b>' .$nomecampus. '</b></p>'.
-                        ''.
-			'<p>Tópico: <b>' .$topico. '</b></p>'.
-                        ''.
-			'<p>Artigo/Inciso: <b>' .$artigo. '</b></p>'.
-			''.
-			'<p>E-mail: <b>' .$email. '</b></p>'.                 
-			''.
-			'<p>Justificativa: <b>' .$justificativa. '</b></p>'.
-			''.
-			'<p>Sugest&atilde;o: <b>' .$sugestao. '</b></p>',
-		'text/html')
-		->setSender($usuarioSMTP)
-		->setPriority(2)
-	;
-	$result = $mailer->send($mensagem);
-	if ($result) {
+	$retorno = false;
+	$destinatario = $usuarioSMTP ;
+	$assunto = "Planejamento Institucional 2012";
+	$corpo = "Comissão,\n\nSegue a contribuição no Sistema de Sugestões Eletrônica.\nOs dados são:\n\nNome: ".$nome."\nSIAPE: ".$siape."\nMatrícula: ".$matricula."\nCampus: ".$nomecampus."\nE-mail: ".$email."\nJustificativa: ".$justificativa."\nSugestão: ".$sugestao."";
+	$headers = "MIME-Version: 1.1\r\n";
+	$headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+	$headers .= "From:".$usuarioSMTP."\r\n";
+	$headers .= "Return-Path:".$usuarioSMTP."\r\n";
+	$enviar = mail($destinatario,$assunto,$corpo,$headers);       
+        
+        if ($enviar) {
             
             echo("<p class='textoDestaque2'>A sugest&atilde;o foi enviada ao email da comiss&atilde;o.</p>");
             
             $obj_mensagem = new Mensagem($pid, $nome, $email, $idcampus, $topico,$artigo,$justificativa,$sugestao,$matricula, $siape);
             $valor        = $obj_mensagem ->Inserir($conexao);    
                 
-	} else {
+	}else {
 	    echo("<p class='textoDestaque2'>Problemas ao enviar o email.</p>");
 	}
 ?>
